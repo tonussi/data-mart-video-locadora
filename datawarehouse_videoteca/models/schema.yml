@@ -1,0 +1,240 @@
+version: 2
+
+models:
+  - name: raw_aluguel_filmes
+    schema: public
+    columns:
+      - name: num_aluguel_filme
+        tests:
+          - not_null
+      - name: id_funcionario
+        tests:
+          - not_null
+      - name: num_copia_filme
+        tests:
+          - not_null
+      - name: num_cliente
+        tests:
+          - not_null
+      - name: num_trans_pagamento
+        tests:
+          - not_null
+      - name: data_aluguel_filme
+        tests:
+          - not_null
+      - name: data_retorno_filme
+        tests:
+          - not_null
+      - name: status_aluguel_filme
+        tests:
+          - not_null
+      - name: taxa_aluguel_filme
+        tests:
+          - not_null
+      - name: sobretaxa_aluguel_filme
+        tests:
+          - not_null
+      - name: feedback_cliente
+        tests:
+          - not_null
+  - name: raw_clientes
+    schema: public
+    columns:
+      - name: num_cliente
+        tests:
+          - not_null
+      - name: nome_cliente
+        tests:
+          - not_null
+      - name: endereco_cliente
+        tests:
+          - not_null
+      - name: cidade_cliente
+        tests:
+          - not_null
+      - name: estado_cliente
+        tests:
+          - not_null
+      - name: cpf_cliente
+        tests:
+          - not_null
+      - name: fone_cliente
+        tests:
+          - not_null
+      - name: num_cliente_titular
+        tests:
+          - not_null
+  - name: raw_copia_filmes
+    schema: public
+    columns:
+      - name: num_copia_filme
+        tests:
+          - not_null
+      - name: num_filme
+        tests:
+          - not_null
+      - name: id_locadora
+        tests:
+          - not_null
+      - name: valor_pago
+        tests:
+          - not_null
+      - name: condicao_geral
+        tests:
+          - not_null
+      - name: dta_compra
+        tests:
+          - not_null
+  - name: raw_distribuidores
+    schema: public
+    columns:
+      - name: id_distribuidor
+        tests:
+          - not_null
+      - name: nome_distribuidor
+        tests:
+          - not_null
+      - name: endereco_distribuidor
+        tests:
+          - not_null
+      - name: cidade_distribuidor
+        tests:
+          - not_null
+      - name: estado_distribuidor
+        tests:
+          - not_null
+      - name: cep_distribuidor
+        tests:
+          - not_null
+      - name: fone_distribuidor
+        tests:
+          - not_null
+  - name: raw_filmes
+    schema: public
+    columns:
+      - name: num_filme
+        tests:
+          - not_null
+      - name: nome_filme
+        tests:
+          - not_null
+      - name: diretor_filme
+        tests:
+          - not_null
+      - name: categoria_filme
+        tests:
+          - not_null
+      - name: estrela_filme
+        tests:
+          - not_null
+      - name: censura_filme
+        tests:
+          - not_null
+      - name: taxa_aluguel_filme
+        tests:
+          - not_null
+      - name: data_filme
+        tests:
+          - not_null
+  - name: raw_funcionarios
+    schema: public
+    columns:
+      - name: id_funcionario
+        tests:
+          - not_null
+      - name: id_locadora
+        tests:
+          - not_null
+      - name: id_supervisor
+        tests:
+          - not_null
+      - name: nome_funcionario
+        tests:
+          - not_null
+      - name: endereco_funcionario
+        tests:
+          - not_null
+      - name: cidade_funcionario
+        tests:
+          - not_null
+      - name: estado_funcionario
+        tests:
+          - not_null
+      - name: cep_funcionario
+        tests:
+          - not_null
+      - name: fone_funcionario
+        tests:
+          - not_null
+      - name: cpf_funcionario
+        tests:
+          - not_null
+      - name: ingresso_funcionario
+        tests:
+          - not_null
+  - name: raw_locadora_distribuidores
+    schema: public
+    columns:
+      - name: id_locadora
+        tests:
+          - not_null
+      - name: id_distribuidor
+        tests:
+          - not_null
+  - name: raw_locadoras
+    schema: public
+    columns:
+      - name: id_locadora
+        tests:
+          - not_null
+      - name: rua_locadora
+        tests:
+          - not_null
+      - name: fone_locadora
+        tests:
+          - not_null
+      - name: nome_locadora
+        tests:
+          - not_null
+  - name: raw_pagamentos
+    schema: public
+    columns:
+      - name: num_trans_pagamento
+        tests:
+          - not_null
+      - name: num_consumidor
+        tests:
+          - not_null
+      - name: id_funcionario
+        tests:
+          - not_null
+      - name: tipo_pagamento
+        tests:
+          - not_null
+      - name: quantia_pagamento
+        tests:
+          - not_null
+      - name: data_pagamento
+        tests:
+          - not_null
+      - name: status_pagamento
+        tests:
+          - not_null
+      - name: num_banco
+        tests:
+          - not_null
+      - name: num_agencia_banco
+        tests:
+          - not_null
+      - name: num_cheque
+      - name: num_cartao_credito
+        tests:
+          - not_null
+      - name: data_exp_cartao
+        tests:
+          - not_null
+      - name: tipo_pagamento_cartao
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['debito', 'credito']

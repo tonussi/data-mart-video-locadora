@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: datawarehouse_videoteca
+    database: datawarehouse_videoteca
+    schema: public
+    tables:
+      - name: aluguel_filmes
+      - name: clientes
+      - name: copia_filmes
+      - name: distribuidores
+      - name: filmes
+      - name: funcionarios
+      - name: locadora_distribuidores
+      - name: locadoras
+      - name: pagamentos
