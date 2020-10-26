@@ -1,20 +1,25 @@
-select
-  pagamentos.num_trans_pagamento,
-  aluguel_filmes.num_copia_filme,
-  pagamentos.data_pagamento,
-  (
-    case when aluguel_filmes.data_retorno_filme <> null
-    then pagamentos.quantia_pagamento + aluguel_filmes.taxa_aluguel_filme
-    else pagamentos.quantia_pagamento end
-  ) as quantia_pagamento_taxada
-  from {{ ref('dim_pagamentos') }} as pagamentos
-  join {{ ref('raw_aluguel_filmes') }} as aluguel_filmes
-  on pagamentos.num_trans_pagamento = aluguel_filmes.num_trans_pagamento
-  group by (
+with source as (
+  select
     pagamentos.num_trans_pagamento,
     aluguel_filmes.num_copia_filme,
-    aluguel_filmes.data_retorno_filme,
-    pagamentos.quantia_pagamento,
+    pagamentos.data_pagamento,
     aluguel_filmes.taxa_aluguel_filme,
-    pagamentos.data_pagamento
-  )
+    aluguel_filmes.sobretaxa_aluguel_filme,
+    pagamentos.quantia_pagamento
+    from {{ ref('dim_pagamentos') }} as pagamentos
+    join {{ ref('raw_aluguel_filmes') }} as aluguel_filmes
+    on pagamentos.num_trans_pagamento = aluguel_filmes.num_trans_pagamento
+),
+
+fact_retorno_por_aluguel as (
+  select
+    num_trans_pagamento,
+    num_copia_filme,
+    data_pagamento,
+    taxa_aluguel_filme,
+    quantia_pagamento,
+    quantia_pagamento + taxa_aluguel_filme + sobretaxa_aluguel_filme as quantia_pagamento_taxada
+  from source
+)
+
+select * from fact_retorno_por_aluguel
