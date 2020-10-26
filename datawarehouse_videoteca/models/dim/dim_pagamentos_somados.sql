@@ -12,8 +12,8 @@ with source as (
 dim_pagamentos_somados as (
   select
     num_copia_filme,
-    max(data_pagamento),
-    sum(quantia_pagamento)
+    max(data_pagamento) as ultima_data_pos_soma,
+    sum(quantia_pagamento) as quantia_pagamento_somada
   from source
   group by (num_copia_filme, data_pagamento, quantia_pagamento)
 )
