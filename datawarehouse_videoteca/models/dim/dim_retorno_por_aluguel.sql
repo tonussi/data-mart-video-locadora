@@ -11,7 +11,7 @@ with source as (
     on pagamentos.num_trans_pagamento = aluguel_filmes.num_trans_pagamento
 ),
 
-fact_retorno_por_aluguel as (
+dim_retorno_por_aluguel as (
   select
     num_trans_pagamento,
     num_copia_filme,
@@ -22,4 +22,4 @@ fact_retorno_por_aluguel as (
   from source
 )
 
-select * from fact_retorno_por_aluguel
+select * from dim_retorno_por_aluguel

@@ -6,11 +6,11 @@ dim_filmes_valor_total as (
 
 select
   num_filme,
+  num_copia_filme,
   dta_compra,
   sum(valor_pago) as valor_pago_total_copias
   from source
-  group by (num_filme, dta_compra, valor_pago)
-  order by (num_filme) asc
+  group by (num_filme, num_copia_filme, dta_compra, valor_pago)
 )
 
 select * from dim_filmes_valor_total
