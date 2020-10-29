@@ -7,7 +7,7 @@ dim_tempo as (
 select
   cast(data_retorno_filme as date)
   from source
-  where status_aluguel_filme = 'AL'
+  where status_aluguel_filme = 'NA'
 )
 
 select * from dim_tempo
