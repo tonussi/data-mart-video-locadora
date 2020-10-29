@@ -1,14 +1,14 @@
 with source as (
-  select * from {{ ref('raw_pagamentos') }}
+  select * from {{ ref('raw_aluguel_filmes') }}
 ),
 
 dim_tempo as (
 
 select
   -- this is just an example of a time dimension
-  num_trans_pagamento,
-  data_pagamento
+  data_retorno_filme,
   from source
+  where status_aluguel_filme = 'PG'
 )
 
 select * from dim_tempo
