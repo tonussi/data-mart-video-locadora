@@ -4,9 +4,9 @@ with source as (
     aluguel_filmes.num_copia_filme,
     pagamentos.quantia_pagamento,
     pagamentos.data_pagamento
-    from {{ ref('dim_pagamentos') }} as pagamentos
-    join {{ ref('raw_aluguel_filmes') }} as aluguel_filmes
-    on pagamentos.num_trans_pagamento = aluguel_filmes.num_trans_pagamento
+  from {{ ref('dim_pagamentos') }} as pagamentos
+  join {{ ref('raw_aluguel_filmes') }} as aluguel_filmes
+  on pagamentos.num_trans_pagamento = aluguel_filmes.num_trans_pagamento
 ),
 
 dim_pagamentos_somados as (

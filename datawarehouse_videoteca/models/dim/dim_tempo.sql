@@ -3,9 +3,8 @@ with source as (
 ),
 
 dim_tempo as (
-
-select
-  cast(data_retorno_filme as date)
+  select
+  cast (data_retorno_filme as date)
   from source
   where status_aluguel_filme = 'NA' -- means NOT RENTED
 )

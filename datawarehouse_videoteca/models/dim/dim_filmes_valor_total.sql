@@ -3,12 +3,11 @@ with source as (
 ),
 
 dim_filmes_valor_total as (
-
-select
-  num_filme,
-  num_copia_filme,
-  dta_compra,
-  sum(valor_pago) as valor_pago_total_copias
+  select
+    num_filme,
+    num_copia_filme,
+    dta_compra,
+    sum(valor_pago) as valor_pago_total_copias
   from source
   group by (num_filme, num_copia_filme, dta_compra, valor_pago)
 )

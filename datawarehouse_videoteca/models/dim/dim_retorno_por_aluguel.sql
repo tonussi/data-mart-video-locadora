@@ -6,9 +6,9 @@ with source as (
     aluguel_filmes.taxa_aluguel_filme,
     aluguel_filmes.sobretaxa_aluguel_filme,
     pagamentos.quantia_pagamento
-    from {{ ref('dim_pagamentos') }} as pagamentos
-    join {{ ref('raw_aluguel_filmes') }} as aluguel_filmes
-    on pagamentos.num_trans_pagamento = aluguel_filmes.num_trans_pagamento
+  from {{ ref('dim_pagamentos') }} as pagamentos
+  join {{ ref('raw_aluguel_filmes') }} as aluguel_filmes
+  on pagamentos.num_trans_pagamento = aluguel_filmes.num_trans_pagamento
 ),
 
 dim_retorno_por_aluguel as (
