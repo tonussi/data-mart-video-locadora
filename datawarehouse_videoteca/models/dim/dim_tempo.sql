@@ -5,8 +5,7 @@ with source as (
 dim_tempo as (
 
 select
-  -- this is just an example of a time dimension
-  data_retorno_filme
+  cast(data_retorno_filme as date)
   from source
   where status_aluguel_filme = 'AL'
 )
