@@ -12,9 +12,9 @@ fact_lucratividade_por_copia_filme as (
   select
     num_copia_filme,
     valor_pago_total_copias,
-    receita_somada_aluguel_filme,
-    receita_somada_aluguel_filme / valor_pago_total_copias as lucratividade,
-    ( receita_somada_aluguel_filme / valor_pago_total_copias ) * 100 as lucratividade_porcento
+    trunc(receita_somada_aluguel_filme, 3),
+    trunc(receita_somada_aluguel_filme / valor_pago_total_copias, 3) as lucratividade,
+    trunc((receita_somada_aluguel_filme / valor_pago_total_copias ) * 100, 3) as lucratividade_porcento
   from source
 )
 
