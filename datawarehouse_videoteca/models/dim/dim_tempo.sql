@@ -6,9 +6,9 @@ dim_tempo as (
 
 select
   -- this is just an example of a time dimension
-  data_retorno_filme,
+  data_retorno_filme
   from source
-  where status_aluguel_filme = 'PG'
+  where status_aluguel_filme = 'AL'
 )
 
 select * from dim_tempo
