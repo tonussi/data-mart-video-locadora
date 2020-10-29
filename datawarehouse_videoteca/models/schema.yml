@@ -28,6 +28,8 @@ models:
       - name: status_aluguel_filme
         tests:
           - not_null
+          - accepted_values:
+              values: ['AL', 'NA']
       - name: taxa_aluguel_filme
         tests:
           - not_null
@@ -220,6 +222,8 @@ models:
       - name: status_pagamento
         tests:
           - not_null
+          - accepted_values:
+              values: ['PG', 'NP']
       - name: num_banco
         tests:
           - not_null
