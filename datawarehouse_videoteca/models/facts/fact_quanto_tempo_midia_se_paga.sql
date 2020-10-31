@@ -7,7 +7,7 @@ with source as (
     dim_retorno_por_aluguel.quantia_pagamento_taxada,
     dim_filmes_valor_total.num_filme,
     dim_filmes_valor_total.dta_compra,
-    dim_filmes_valor_total.valor_pago_total_copias,
+    dim_filmes_valor_total.valor_investido_pago_total_copias,
     dim_pagamentos_somados.ultima_data_pos_soma,
     dim_pagamentos_somados.quantia_pagamento_somada
   from {{ ref('dim_filmes_valor_total') }} as dim_filmes_valor_total
@@ -23,9 +23,9 @@ fact_quanto_tempo_midia_se_paga as (
     filmes.nome_filme,
     dta_compra,
     ultima_data_pos_soma,
-    valor_pago_total_copias,
+    valor_investido_pago_total_copias,
     quantia_pagamento_somada,
-    valor_pago_total_copias - quantia_pagamento_somada as diferenca_valor_pago_valor_recebido,
+    valor_investido_pago_total_copias - quantia_pagamento_somada as diferenca_valor_pago_valor_recebido,
     data_pagamento - dta_compra as dias_entre_dta_compra_data_pagamento
   from source join filmes on filmes.num_filme = source.num_filme
 )

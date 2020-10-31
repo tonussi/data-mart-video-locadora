@@ -1,12 +1,12 @@
 with source as (
   select
-    pagamentos.num_trans_pagamento,
-    aluguel_filmes.num_copia_filme,
-    pagamentos.quantia_pagamento,
-    pagamentos.data_pagamento
-  from {{ ref('dim_pagamentos') }} as pagamentos
-  join {{ ref('raw_aluguel_filmes') }} as aluguel_filmes
-  on pagamentos.num_trans_pagamento = aluguel_filmes.num_trans_pagamento
+    raw_pagamentos.num_trans_pagamento,
+    raw_aluguel_filmes.num_copia_filme,
+    raw_pagamentos.quantia_pagamento,
+    raw_pagamentos.data_pagamento
+  from {{ ref('raw_pagamentos') }} as raw_pagamentos
+  join {{ ref('raw_aluguel_filmes') }} as raw_aluguel_filmes
+  on raw_pagamentos.num_trans_pagamento = raw_aluguel_filmes.num_trans_pagamento
 ),
 
 dim_pagamentos_somados as (

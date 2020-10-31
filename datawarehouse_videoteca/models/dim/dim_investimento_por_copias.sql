@@ -5,7 +5,7 @@ with source as (
 dim_investimento_por_copias as (
   select
     num_copia_filme,
-    sum(valor_pago) as valor_pago_total_copias
+    sum(valor_pago) as valor_investido_pago_total_copias
   from source
   group by (num_copia_filme, valor_pago)
 )

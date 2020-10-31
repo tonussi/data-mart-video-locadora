@@ -4,8 +4,8 @@ with source as (
 
 dim_tempo_de_copia_filmes as (
   select
-  cast (dta_compra as date),
-  num_copia_filme
+    cast (dta_compra as date),
+    num_copia_filme
   from source
 )
 

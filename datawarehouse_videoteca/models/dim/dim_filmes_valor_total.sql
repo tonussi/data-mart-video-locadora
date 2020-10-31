@@ -7,7 +7,7 @@ dim_filmes_valor_total as (
     num_filme,
     num_copia_filme,
     dta_compra,
-    sum(valor_pago) as valor_pago_total_copias
+    sum(valor_pago) as valor_investido_pago_total_copias
   from source
   group by (num_filme, num_copia_filme, dta_compra, valor_pago)
 )
