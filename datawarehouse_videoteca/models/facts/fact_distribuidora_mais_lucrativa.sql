@@ -19,9 +19,12 @@ fact_distribuidora_mais_lucrativa as (
     nome_locadora,
     id_distribuidor,
     num_copia_filme,
-    taxa_aluguel_filme,
-    sobretaxa_aluguel_filme
+    (taxa_aluguel_filme + sobretaxa_aluguel_filme) as lucro_da_locadora
   from source
 )
 
-select * from fact_distribuidora_mais_lucrativa
+select
+  id_locadora,
+  sum(lucro_da_locadora)
+from fact_distribuidora_mais_lucrativa
+group by 1
