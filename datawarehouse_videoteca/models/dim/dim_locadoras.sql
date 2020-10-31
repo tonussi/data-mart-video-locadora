@@ -8,7 +8,7 @@ with source as (
   on raw_locadoras.id_locadora = raw_locadora_distribuidores.id_locadora
 ),
 
-dim_locadora as (
+dim_locadoras as (
   select
     id_locadora,
     id_distribuidor,
@@ -16,4 +16,4 @@ dim_locadora as (
   from source
 )
 
-select * from dim_locadora
+select * from dim_locadoras
