@@ -17,7 +17,7 @@ with source as (
   on dim_retorno_por_aluguel.num_copia_filme = dim_pagamentos_somados.num_copia_filme
 ),
 
-fact as (
+fact_quanto_tempo_midia_se_paga as (
   select
     filmes.num_filme,
     filmes.nome_filme,
@@ -30,4 +30,4 @@ fact as (
   from source join filmes on filmes.num_filme = source.num_filme
 )
 
-select * from fact
+select * from fact_quanto_tempo_midia_se_paga
