@@ -6,12 +6,15 @@ with source as (
     dim_aluguel_filmes.num_copia_filme,
     dim_aluguel_filmes.taxa_aluguel_filme,
     dim_aluguel_filmes.sobretaxa_aluguel_filme,
+    dim_contagem_aluguel_filmes.contagem_de_num_copia_filme_iguais,
     (select count(*) from dim_aluguel_filmes) as total_locacoes_todas_locadoras
   from {{ ref('dim_locadoras') }} as dim_locadoras
   join {{ ref('dim_copia_filmes_e_suas_locadoras') }} as dim_copia_filmes_e_suas_locadoras
   on dim_locadoras.id_locadora = dim_copia_filmes_e_suas_locadoras.id_locadora
   join {{ ref('dim_aluguel_filmes') }} as dim_aluguel_filmes
   on dim_copia_filmes_e_suas_locadoras.num_copia_filme = dim_aluguel_filmes.num_copia_filme
+  join {{ ref('dim_contagem_aluguel_filmes') }} as dim_contagem_aluguel_filmes
+  on dim_aluguel_filmes.num_copia_filme = dim_contagem_aluguel_filmes.num_copia_filme
 ),
 
 fact_melhor_distribuicao_midias_locadoras as (
@@ -21,6 +24,7 @@ fact_melhor_distribuicao_midias_locadoras as (
     id_distribuidor,
     num_copia_filme,
     total_locacoes_todas_locadoras,
+    contagem_de_num_copia_filme_iguais,
     (taxa_aluguel_filme + sobretaxa_aluguel_filme) as lucro_da_locadora
   from source
 )
@@ -29,6 +33,7 @@ select
   id_locadora,
   sum(lucro_da_locadora) as soma_lucro_por_locadora,
   total_locacoes_todas_locadoras,
+  contagem_de_num_copia_filme_iguais,
   trunc(sum(lucro_da_locadora) / total_locacoes_todas_locadoras, 3) as razao_soma_lucro_por_total
 from fact_melhor_distribuicao_midias_locadoras
 group by (id_locadora, total_locacoes_todas_locadoras)
