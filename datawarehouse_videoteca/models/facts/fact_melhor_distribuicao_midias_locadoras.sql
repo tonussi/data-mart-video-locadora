@@ -14,7 +14,7 @@ with source as (
   on dim_copia_filmes_e_suas_locadoras.num_copia_filme = dim_aluguel_filmes.num_copia_filme
 ),
 
-fact_distribuidora_mais_lucrativa as (
+fact_melhor_distribuicao_midias_locadoras as (
   select
     id_locadora,
     nome_locadora,
@@ -30,5 +30,5 @@ select
   sum(lucro_da_locadora) as soma_lucro_por_locadora,
   total_locacoes_todas_locadoras,
   trunc(sum(lucro_da_locadora) / total_locacoes_todas_locadoras, 3) as razao_soma_lucro_por_total
-from fact_distribuidora_mais_lucrativa
+from fact_melhor_distribuicao_midias_locadoras
 group by (id_locadora, total_locacoes_todas_locadoras)
