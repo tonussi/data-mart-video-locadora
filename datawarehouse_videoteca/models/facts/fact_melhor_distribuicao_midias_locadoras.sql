@@ -31,9 +31,10 @@ fact_melhor_distribuicao_midias_locadoras as (
 
 select
   id_locadora,
+  num_copia_filme,
   sum(lucro_da_locadora) as soma_lucro_por_locadora,
   total_locacoes_todas_locadoras,
   contagem_de_num_copia_filme_iguais,
   trunc(sum(lucro_da_locadora) / total_locacoes_todas_locadoras, 3) as razao_soma_lucro_por_total
 from fact_melhor_distribuicao_midias_locadoras
-group by (id_locadora, total_locacoes_todas_locadoras)
+group by (id_locadora, num_copia_filme, contagem_de_num_copia_filme_iguais, total_locacoes_todas_locadoras)
