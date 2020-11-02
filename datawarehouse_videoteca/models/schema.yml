@@ -189,15 +189,18 @@ models:
       - name: id_locadora
         tests:
           - not_null
+          - unique
       - name: rua_locadora
         tests:
           - not_null
       - name: fone_locadora
         tests:
           - not_null
+          - unique
       - name: nome_locadora
         tests:
           - not_null
+          - unique
   - name: raw_pagamentos
     schema: public
     columns:
